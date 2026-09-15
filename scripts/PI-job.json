@@ -1,0 +1,42 @@
+{
+  "name" : "PI-job",
+  "jobMode" : "VISUAL",
+  "description" : "",
+  "role" : "arn:aws:iam::385615870279:role/LabRole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-385615870279-us-east-1/scripts/PI-job.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-385615870279-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--enable-observability-metrics" : "true",
+    "--conf" : "spark.eventLog.rolling.enabled=true --conf spark.sql.catalog.glue_catalog.glue.skip-name-validation=true",
+    "--enable-glue-datacatalog" : "",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-385615870279-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 10,
+  "timeout" : 480,
+  "maxCapacity" : 10.0,
+  "glueVersion" : "5.1",
+  "numberOfWorkers" : 10,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "codeGenConfigurationNodes" : "{\"node-1789330900595\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1789330392890\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1789330504947\"],\"Name\":\"tb_2023\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://lab-385615870279/data-output/2023/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false,\"Table\":\"tb_2023\",\"UpdateBehavior\":\"UPDATE_IN_DATABASE\"}}},\"node-1789330905060\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1789330392890\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1789330506160\"],\"Name\":\"tb_2024\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://lab-385615870279/data-output/2024/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}},\"node-1789330504947\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://lab-385615870279/data-input/2023/State_of_data_BR_2023_Kaggle - df_survey_2023.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Ano-2023\",\"OptimizePerformance\":false,\"OutputSchemas\":[{\"Columns\":[]}],\"Paths\":[\"s3://lab-385615870279/data-input/2023/State_of_data_BR_2023_Kaggle - df_survey_2023.csv\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}},\"node-1789330506160\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://lab-385615870279/data-input/2024/Final Dataset - State of Data 2024 - Kaggle - df_survey_2024.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Ano-2024\",\"OptimizePerformance\":false,\"Paths\":[\"s3://lab-385615870279/data-input/2024/Final Dataset - State of Data 2024 - Kaggle - df_survey_2024.csv\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}},\"node-1789330507936\":{\"S3CsvSource\":{\"AdditionalOptions\":{\"EnableSamplePath\":false,\"SamplePath\":\"s3://lab-385615870279/data-input/2025/Final Dataset - State of Data 2025-2026 - Kaggle.csv\"},\"Escaper\":\"\",\"Exclusions\":[],\"Name\":\"Ano-2025\",\"OptimizePerformance\":false,\"Paths\":[\"s3://lab-385615870279/data-input/2025/Final Dataset - State of Data 2025-2026 - Kaggle.csv\"],\"QuoteChar\":\"quote\",\"Recurse\":true,\"Separator\":\"comma\",\"WithHeader\":true}},\"node-1789330909911\":{\"S3GlueParquetTarget\":{\"AutoDataQuality\":{\"EvaluationContext\":\"EvaluateDataQuality_node1789330392890\",\"IsEnabled\":true},\"Compression\":\"snappy\",\"Inputs\":[\"node-1789330507936\"],\"Name\":\"tb_2025\",\"NumberTargetPartitions\":\"0\",\"PartitionKeys\":[],\"Path\":\"s3://lab-385615870279/data-output/2025/\",\"SchemaChangePolicy\":{\"EnableUpdateCatalog\":false}}}}",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "Tech-Challenge-Fase-3",
+    "branch" : "main",
+    "folder" : "scripts"
+  }
+}
